@@ -19,7 +19,7 @@ to doing encryption via the `skinny-64-128`, type the following command:
 ./skinny-64-128
 ```
 ## Test-Vectors
-### State Array
+
 It is supposed that the state array is filled according to the following order:
 Skinny-64:
 ```
