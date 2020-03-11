@@ -207,9 +207,10 @@ int main()
     string tk2_str = "c3a654bcc84a7c2c";   //reversed
     string plain_str = "7c08eabe2745ac41"; //reversed
     string cipher_str = "01398221bd577c31";
-    convert_hexstr_to_statearray(tk1_str, tweakey1, true);
-    convert_hexstr_to_statearray(tk2_str, tweakey2, true);
-    convert_hexstr_to_statearray(plain_str, plaintext, true);
+    bool reversed = true;
+    convert_hexstr_to_statearray(tk1_str, tweakey1, reversed);
+    convert_hexstr_to_statearray(tk2_str, tweakey2, reversed);
+    convert_hexstr_to_statearray(plain_str, plaintext, reversed);
     for (uint8_t i = 0; i < 16; i++)
     {
         tk1[0][i] = tweakey1[i];

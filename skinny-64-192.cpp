@@ -227,10 +227,11 @@ int main()
     string tk3_str = "cc979c6bda618993"; //reversed
     string plain_str = "456e7743a8e1bb61"; //reversed
     string cipher_str = "9033c0d31432637d";
-    convert_hexstr_to_statearray(tk1_str, tweakey1, true);
-    convert_hexstr_to_statearray(tk2_str, tweakey2, true);
-    convert_hexstr_to_statearray(tk3_str, tweakey3, true);
-    convert_hexstr_to_statearray(plain_str, plaintext, true);
+    bool reversed = true;
+    convert_hexstr_to_statearray(tk1_str, tweakey1, reversed);
+    convert_hexstr_to_statearray(tk2_str, tweakey2, reversed);
+    convert_hexstr_to_statearray(tk3_str, tweakey3, reversed);
+    convert_hexstr_to_statearray(plain_str, plaintext, reversed);
 
     for (uint8_t i = 0; i < 16; i++)
     {
