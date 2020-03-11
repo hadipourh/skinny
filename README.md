@@ -47,4 +47,4 @@ Skinny-128-384 : | b372cdd48ca7d309d10f2fb2e6f5fe2a | 365b015aac7bfd8f4b06b91986
 ```
 Note that, `convert_hexstr_to_statearray(string hex_str, uint8_t int_array[16], bool reversed = false)` function is
 used to pass the parameters to the encryption, and decryption, and tweakey-schedule functions in reverse order. 
-For example `convert_hexstr_to_statearray("4628f5375c8df07d", tweakey1, true)`, and `convert_hexstr_to_statearray("d70fd8c5735f8264", tweakey1)` are equivalent. 
+For example `convert_hexstr_to_statearray("4628f5375c8df07d", tweakey1, true)`, and `convert_hexstr_to_statearray("d70fd8c5735f8264", tweakey1, false)` are equivalent. 
