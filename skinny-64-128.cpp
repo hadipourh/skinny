@@ -43,7 +43,7 @@ void convert_hexstr_to_statearray(string hex_str, uint8_t int_array[16], bool re
             int_array[15 - i] = stoi(hex_str.substr(i, 1), 0, 16);
     else
         for (int i = 0; i < 16; i++)
-            int_array[i] = stoi(hex_str.substr(i, 2), 0, 16);
+            int_array[i] = stoi(hex_str.substr(i, 1), 0, 16);
 }
 
 uint8_t tweak_tk2_lfsr(uint8_t x)
