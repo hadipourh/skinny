@@ -35,8 +35,8 @@ cipher           | tk1                              | tk2                       
 Skinny-64-128  : | d70fd8c5735f8264                 | c2c7a48ccb456a3c                 | none                             | 14ca5472ebae80c7                 | 01398221bd577c31
 Skinny-64-192  : | bebea20a052cc18b                 | b23b936a8045a680                 | 399816adb6c979cc                 | 16bb1e8a3477e654                 | 9033c0d31432637d
 ```
-### Skinny-128:
 
+### Skinny-128:
 ```
 c683dc9e0ad25edf7d6300367d4b8665 :
 c6 83 dc 9e
