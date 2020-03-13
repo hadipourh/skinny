@@ -222,12 +222,12 @@ int main()
     uint8_t tweakey2[16];
     uint8_t tweakey3[16];
     // Test vectors
-    string tk1_str = "b81cc250a02aebeb"; //reversed
-    string tk2_str = "086a5408a639b32b"; //reversed
-    string tk3_str = "cc979c6bda618993"; //reversed
-    string plain_str = "456e7743a8e1bb61"; //reversed
+    string tk1_str = "bebea20a052cc18b";
+    string tk2_str = "b23b936a8045a680";
+    string tk3_str = "399816adb6c979cc";
+    string plain_str = "16bb1e8a3477e654";
     string cipher_str = "9033c0d31432637d";
-    bool reversed = true;
+    bool reversed = false;
     convert_hexstr_to_statearray(tk1_str, tweakey1, reversed);
     convert_hexstr_to_statearray(tk2_str, tweakey2, reversed);
     convert_hexstr_to_statearray(tk3_str, tweakey3, reversed);

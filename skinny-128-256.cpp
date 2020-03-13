@@ -125,8 +125,7 @@ void tweakey_schedule(uint8_t tk1[][16], uint8_t tk2[][16], uint8_t round_tweake
         for (int i = 0; i < 8; i++)
             round_tweakey[r][i] = (tk1[r][i] ^ tk2[r][i]);
         // printf("\ntweakeys: ");
-        // for (uint8_t k = 0; k < 16; k++)
-        //     printf("%.2X", round_tweakey[r][k]);
+        // print_state(round_tweakey[r]);
     }
 }
 
