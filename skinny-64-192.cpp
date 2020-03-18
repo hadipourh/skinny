@@ -119,7 +119,7 @@ void tweakey_schedule(uint8_t tk1[][16], uint8_t tk2[][16], uint8_t tk3[][16], u
             tkp2[r - 1][i] = tk2[r - 1][Q[i]];
             tkp3[r - 1][i] = tk3[r - 1][Q[i]];
         }
-        // Apply LFSR on two upper rows of TK2, and update round tweakey
+        // Apply LFSR on two upper rows of TK2, and TK3
         for (int i = 0; i < 16; i++)
         {
             // LFSRs are not performed on TK1 at all
@@ -135,6 +135,7 @@ void tweakey_schedule(uint8_t tk1[][16], uint8_t tk2[][16], uint8_t tk3[][16], u
                 tk3[r][i] = tkp3[r - 1][i];
             }
         }
+        // Update round-tweakey
         for (int i = 0; i < 8; i++)
             round_tweakey[r][i] = (tk1[r][i] ^ tk2[r][i] ^ tk3[r][i]);
         // printf("\ntweakeys: ");

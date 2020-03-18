@@ -210,9 +210,10 @@ int main()
     string tk2_str = "7926f29ea97cf5d67a08d6446cb7ce32";
     string plain_str = "e82da08d25828a562dfd13ffca64e18a";
     string cipher_str = "8a7fa5c2f46472123f28c639cfa00824";
-    convert_hexstr_to_statearray(tk1_str, tweakey1);
-    convert_hexstr_to_statearray(tk2_str, tweakey2);
-    convert_hexstr_to_statearray(plain_str, plaintext);
+    bool reversed = true;
+    convert_hexstr_to_statearray(tk1_str, tweakey1, reversed);
+    convert_hexstr_to_statearray(tk2_str, tweakey2, reversed);
+    convert_hexstr_to_statearray(plain_str, plaintext, reversed);
 
     for (uint8_t i = 0; i < 16; i++)
     {
