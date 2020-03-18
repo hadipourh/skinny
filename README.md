@@ -16,7 +16,7 @@ make
 Open the terminal inside the skinny folder, and then call the object file corresponding to the target cipher. For example, in order 
 to doing encryption via the `skinny-64-128`, type the following command:
 ```
-./skinny-64-128
+./skinny-64-128.o
 ```
 ## Test-Vectors
 

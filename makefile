@@ -24,24 +24,24 @@
 CC = g++
 CFLAGS  = -g -Wall
 # the build target(s) executable:
-TARGET1 = skinny-64-128
-TARGET2 = skinny-64-192
-TARGET3 = skinny-128-256
-TARGET4 = skinny-128-384
+TARGET1 = skinny-64-128.o
+TARGET2 = skinny-64-192.o
+TARGET3 = skinny-128-256.o
+TARGET4 = skinny-128-384.o
 # skinny-64-192 skinny-128-256 skinny-128-384
 # If you execute make without a flag, it does the actions under the "all" target by default
-all: skinny-64-128.o skinny-64-192.o skinny-128-256.o skinny-128-384.o
-	$(CC) $(CFLAGS) -o $(TARGET1) skinny-64-128.o
-	$(CC) $(CFLAGS) -o $(TARGET2) skinny-64-192.o
-	$(CC) $(CFLAGS) -o $(TARGET3) skinny-128-256.o
-	$(CC) $(CFLAGS) -o $(TARGET4) skinny-128-384.o
-skinny-64-128.o: skinny-64-128.cpp
-	$(CC) $(CFLAGS) -c skinny-64-128.cpp
-skinny-64-192.o: skinny-64-192.cpp
-	$(CC) $(CFLAGS) -c skinny-64-192.cpp
-skinny-128-256.o: skinny-128-256.cpp
-	$(CC) $(CFLAGS) -c skinny-128-256.cpp
-skinny-128-384.o: skinny-128-384.cpp
-	$(CC) $(CFLAGS) -c skinny-128-384.cpp
+all: skinny-64-128.cpp skinny-64-192.cpp skinny-128-256.cpp skinny-128-384.cpp
+	$(CC) $(CFLAGS) -o $(TARGET1) skinny-64-128.cpp
+	$(CC) $(CFLAGS) -o $(TARGET2) skinny-64-192.cpp
+	$(CC) $(CFLAGS) -o $(TARGET3) skinny-128-256.cpp
+	$(CC) $(CFLAGS) -o $(TARGET4) skinny-128-384.cpp
+skinny-64-128: skinny-64-128.cpp
+	$(CC) $(CFLAGS) -o $(TARGET1) skinny-64-128.cpp
+skinny-64-192: skinny-64-192.cpp
+	$(CC) $(CFLAGS) -o $(TARGET2) skinny-64-192.cpp
+skinny-128-256: skinny-128-256.cpp
+	$(CC) $(CFLAGS) -o $(TARGET3) skinny-128-256.cpp
+skinny-128-384: skinny-128-384.cpp
+	$(CC) $(CFLAGS) -o $(TARGET4) skinny-128-384.cpp
 clean:
 	rm -f *.o $(TARGET)
