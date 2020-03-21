@@ -183,7 +183,7 @@ void dec(uint8_t R, uint8_t plaintext[16], uint8_t ciphertext[16], uint8_t tk[][
         for (uint8_t i = 0; i < 8; i++)
             plaintext[i] ^= tk[ind][i];
         // Add constants
-        plaintext[0] ^= (RC[ind] & 0xff);
+        plaintext[0] ^= (RC[ind] & 0xf);
         plaintext[4] ^= ((RC[ind] >> 4) & 0x3);
         plaintext[8] ^= 0x2;
         // SBox inverse
