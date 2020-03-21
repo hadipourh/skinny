@@ -220,11 +220,11 @@ int main()
     uint8_t tweakey2[16];
     uint8_t tweakey3[16];
     // Test vectors
-    string tk1_str = "b372cdd48ca7d309d10f2fb2e6f5fe2a";
-    string tk2_str = "365b015aac7bfd8f4b06b919864c3839";
-    string tk3_str = "be050e4bade1547ef08330d6792e01af";
-    string plain_str = "44405dd624507aa3e3d0092ace7f931f";
-    string cipher_str = "4b25c67cf6f5d9dca8d718120fe3903c";
+    string tk1_str = "df889548cfc7ea52d296339301797449";
+    string tk2_str = "ab588a34a47f1ab2dfe9c8293fbea9a5";
+    string tk3_str = "ab1afac2611012cd8cef952618c3ebe8";
+    string plain_str = "a3994b66ad85a3459f44e92b08f550cb";
+    string cipher_str = "94ecf589e2017c601b38c6346a10dcfa";
     bool reversed = false;
     convert_hexstr_to_statearray(tk1_str, tweakey1, reversed);
     convert_hexstr_to_statearray(tk2_str, tweakey2, reversed);

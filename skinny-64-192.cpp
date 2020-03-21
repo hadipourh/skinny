@@ -223,11 +223,11 @@ int main()
     uint8_t tweakey2[16];
     uint8_t tweakey3[16];
     // Test vectors
-    string tk1_str = "bebea20a052cc18b";
-    string tk2_str = "b23b936a8045a680";
-    string tk3_str = "399816adb6c979cc";
-    string plain_str = "16bb1e8a3477e654";
-    string cipher_str = "9033c0d31432637d";
+    string tk1_str = "ed00c85b120d6861";
+    string tk2_str = "8753e24bfd908f60";
+    string tk3_str = "b2dbb41b422dfcd0";
+    string plain_str = "530c61d35e8663c3";
+    string cipher_str = "dd2cf1a8f330303c";
     bool reversed = false;
     convert_hexstr_to_statearray(tk1_str, tweakey1, reversed);
     convert_hexstr_to_statearray(tk2_str, tweakey2, reversed);
