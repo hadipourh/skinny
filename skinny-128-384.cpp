@@ -38,8 +38,8 @@ uint8_t tweak_tk3_lfsr8(uint8_t x);
 void mix_columns(uint8_t state[16]);
 void inv_mix_columns(uint8_t state[16]);
 void tweakey_schedule(int rounds, uint8_t tk1[][16], uint8_t tk2[][16], uint8_t tk3[][16], uint8_t round_tweakey[][8]);
-void enc(uint8_t R, uint8_t plaintext[16], uint8_t ciphertext[16], uint8_t tk[][8]);
-void dec(uint8_t R, uint8_t plaintext[16], uint8_t ciphertext[16], uint8_t tk[][8]);
+void enc(int R, uint8_t plaintext[16], uint8_t ciphertext[16], uint8_t tk[][8]);
+void dec(int R, uint8_t plaintext[16], uint8_t ciphertext[16], uint8_t tk[][8]);
 
 void print_state(uint8_t state[16])
 {
@@ -150,7 +150,7 @@ void tweakey_schedule(int rounds, uint8_t tk1[][16], uint8_t tk2[][16], uint8_t 
     }
 }
 
-void enc(uint8_t R, uint8_t plaintext[16], uint8_t ciphertext[16], uint8_t tk[][8])
+void enc(int R, uint8_t plaintext[16], uint8_t ciphertext[16], uint8_t tk[][8])
 {
     for (uint8_t i = 0; i < 16; i++)
     {
@@ -181,7 +181,7 @@ void enc(uint8_t R, uint8_t plaintext[16], uint8_t ciphertext[16], uint8_t tk[][
     }
 }
 
-void dec(uint8_t R, uint8_t plaintext[16], uint8_t ciphertext[16], uint8_t tk[][8])
+void dec(int R, uint8_t plaintext[16], uint8_t ciphertext[16], uint8_t tk[][8])
 {
     for (uint8_t i = 0; i < 16; i++)
     {
