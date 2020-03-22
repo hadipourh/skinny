@@ -8,8 +8,6 @@
 
 #include <stdio.h>
 #include <stdint.h>
-#include <time.h>
-#include <string.h>
 #include <iostream>
 
 using namespace std;
@@ -23,7 +21,7 @@ const uint8_t P[16] = {0x0, 0x1, 0x2, 0x3, 0x7, 0x4, 0x5, 0x6, 0xa, 0xb, 0x8, 0x
 const uint8_t Pinv[16] = {0x0, 0x1, 0x2, 0x3, 0x5, 0x6, 0x7, 0x4, 0xa, 0xb, 0x8, 0x9, 0xf, 0xc, 0xd, 0xe};
 // Tweakey Permutation
 const uint8_t Q[16] = {0x9, 0xf, 0x8, 0xd, 0xa, 0xe, 0xc, 0xb, 0x0, 0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7};
-const uint8_t Qinv[16] = {0x8, 0x9, 0xa, 0xb, 0xc, 0xd, 0xe, 0xf, 0x2, 0x0, 0x4, 0x7, 0x6, 0x3, 0x5, 0x1};
+// const uint8_t Qinv[16] = {0x8, 0x9, 0xa, 0xb, 0xc, 0xd, 0xe, 0xf, 0x2, 0x0, 0x4, 0x7, 0x6, 0x3, 0x5, 0x1};
 // Round Constants
 const unsigned char RC[62] = {0x01, 0x03, 0x07, 0x0F, 0x1F, 0x3E, 0x3D, 0x3B, 0x37, 0x2F,
                               0x1E, 0x3C, 0x39, 0x33, 0x27, 0x0E, 0x1D, 0x3A, 0x35, 0x2B,
@@ -33,10 +31,20 @@ const unsigned char RC[62] = {0x01, 0x03, 0x07, 0x0F, 0x1F, 0x3E, 0x3D, 0x3B, 0x
                               0x26, 0x0c, 0x19, 0x32, 0x25, 0x0a, 0x15, 0x2a, 0x14, 0x28,
                               0x10, 0x20};
 
+void print_state(uint8_t state[16]);
+void convert_hexstr_to_statearray(string hex_str, uint8_t int_array[16], bool reversed);
+uint8_t tweak_tk2_lfsr(uint8_t x);
+uint8_t tweak_tk3_lfsr(uint8_t x);
+void mix_columns(uint8_t state[16]);
+void inv_mix_columns(uint8_t state[16]);
+void tweakey_schedule(int rounds, uint8_t tk1[][16], uint8_t tk2[][16], uint8_t tk3[][16], uint8_t round_tweakey[][8]);
+void enc(int R, uint8_t plaintext[16], uint8_t ciphertext[16], uint8_t tk[][8]);
+void dec(int R, uint8_t plaintext[16], uint8_t ciphertext[16], uint8_t tk[][8]);
+
 void print_state(uint8_t state[16])
 {
     for (int i = 0; i < 16; i++)
-        printf("%.1X", state[i]);
+        printf("%01x", state[i]);
     printf("\n");
 }
 
@@ -44,10 +52,10 @@ void convert_hexstr_to_statearray(string hex_str, uint8_t int_array[16], bool re
 {
     if (reversed == true)
         for (int i = 15; i > -1; i--)
-            int_array[15 - i] = stoi(hex_str.substr(i, 1), 0, 16);
+            int_array[15 - i] = static_cast<uint8_t> (stoi(hex_str.substr(i, 1), 0, 16));
     else
         for (int i = 0; i < 16; i++)
-            int_array[i] = stoi(hex_str.substr(i, 1), 0, 16);
+            int_array[i] = static_cast<uint8_t> (stoi(hex_str.substr(i, 1), 0, 16));
 }
 
 uint8_t tweak_tk2_lfsr(uint8_t x)
@@ -96,7 +104,7 @@ void inv_mix_columns(uint8_t state[16])
     }
 }
 
-void tweakey_schedule(uint8_t tk1[][16], uint8_t tk2[][16], uint8_t tk3[][16], uint8_t round_tweakey[][8], int rounds)
+void tweakey_schedule(int rounds, uint8_t tk1[][16], uint8_t tk2[][16], uint8_t tk3[][16], uint8_t round_tweakey[][8])
 {
     // Declare tweakey after permutation
     uint8_t tkp1[rounds - 1][16];
@@ -143,7 +151,7 @@ void tweakey_schedule(uint8_t tk1[][16], uint8_t tk2[][16], uint8_t tk3[][16], u
     }
 }
 
-void enc(uint8_t R, uint8_t plaintext[16], uint8_t ciphertext[16], uint8_t tk[][8])
+void enc(int R, uint8_t plaintext[16], uint8_t ciphertext[16], uint8_t tk[][8])
 {
     for (uint8_t i = 0; i < 16; i++)
     {
@@ -175,7 +183,7 @@ void enc(uint8_t R, uint8_t plaintext[16], uint8_t ciphertext[16], uint8_t tk[][
     }
 }
 
-void dec(uint8_t R, uint8_t plaintext[16], uint8_t ciphertext[16], uint8_t tk[][8])
+void dec(int R, uint8_t plaintext[16], uint8_t ciphertext[16], uint8_t tk[][8])
 {
     for (uint8_t i = 0; i < 16; i++)
     {
@@ -240,16 +248,18 @@ int main()
         tk2[0][i] = tweakey2[i];
         tk3[0][i] = tweakey3[i];
     }
-    tweakey_schedule(tk1, tk2, tk3, rtk, R);
-    printf("plaintext before encryption : \t");
+    tweakey_schedule(R, tk1, tk2, tk3, rtk);
+    printf("%-30s", "plaintext before encryption:");
     print_state(plaintext);
     enc(R, plaintext, ciphertext, rtk);
-    printf("ciphertext : \t");
+    printf("%-30s", "ciphertext:");
     print_state(ciphertext);
+    printf("%-30s", "expected ciphertext:");
+    printf("%s\n", cipher_str.c_str());
     dec(R, plaintext, ciphertext, rtk);
-    printf("plaintext after decryption : \t");
+    printf("%-30s", "plaintext after decryption:");
     print_state(plaintext);
-    printf("\nPress Enter to exit ...\n");
+    printf("Press Enter to exit ...\n");
     getchar();
     return 0;
 }
