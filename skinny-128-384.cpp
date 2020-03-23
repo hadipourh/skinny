@@ -53,7 +53,7 @@ void convert_hexstr_to_statearray(string hex_str, uint8_t int_array[16], bool re
 {
     if (reversed == true)
         for (size_t i = 0; i < 16; i++)
-            int_array[15 - i] = static_cast<uint8_t> (stoi(hex_str.substr(2 * i, 1) + hex_str.substr(2 * i + 1, 1), 0, 16) & 0xff);
+            int_array[15 - i] = static_cast<uint8_t> (stoi(hex_str.substr(2 * i, 2), 0, 16) & 0xff);
     else
         for (size_t i = 0; i < 16; i++)
             int_array[i] = static_cast<uint8_t> (stoi(hex_str.substr(2 * i, 2), 0, 16) & 0xff);
@@ -240,15 +240,16 @@ int main()
     convert_hexstr_to_statearray(tk3_str, tweakey3, reversed);
     convert_hexstr_to_statearray(plain_str, plaintext, reversed);
 
-    //string tk1_str_rv = "2afef5e6b22f0fd109d3a78cd4cd72b3";
-    //string tk2_str_rv = "39384c8619b9064b8ffd7bac5a015b36";
-    //string tk3_str_rv = "af012e79d63083f07e54e1ad4b0e05be";
-    //string plain_rv = "1f937fce2a09d0e3a37a5024d65d4044";
-    //bool reversed = true;
-    //convert_hexstr_to_statearray(tk1_str_rv, tweakey1, reversed);
-    //convert_hexstr_to_statearray(tk2_str_rv, tweakey2, reversed);
-    //convert_hexstr_to_statearray(tk3_str_rv, tweakey3, reversed);
-    //convert_hexstr_to_statearray(plain_rv, plaintext, reversed);
+    // string tk1_str_rv = "49747901933396d252eac7cf489588df";
+    // string tk2_str_rv = "a5a9be3f29c8e9dfb21a7fa4348a58ab";
+    // string tk3_str_rv = "e8ebc3182695ef8ccd121061c2fa1aab";
+    // string plain_rv = "cb50f5082be9449f45a385ad664b99a3";
+    // string cipher_str = "94ecf589e2017c601b38c6346a10dcfa";
+    // bool reversed = true;
+    // convert_hexstr_to_statearray(tk1_str_rv, tweakey1, reversed);
+    // convert_hexstr_to_statearray(tk2_str_rv, tweakey2, reversed);
+    // convert_hexstr_to_statearray(tk3_str_rv, tweakey3, reversed);
+    // convert_hexstr_to_statearray(plain_rv, plaintext, reversed);
     for (uint8_t i = 0; i < 16; i++)
     {
         tk1[0][i] = tweakey1[i];

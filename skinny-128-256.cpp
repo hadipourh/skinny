@@ -52,7 +52,7 @@ void convert_hexstr_to_statearray(string hex_str, uint8_t int_array[16], bool re
 {
     if (reversed == true)
         for (size_t i = 0; i < 16; i++)
-            int_array[15 - i] = static_cast<uint8_t> (stoi(hex_str.substr(2 * i, 1) + hex_str.substr(2 * i + 1, 1), 0, 16) & 0xff);
+            int_array[15 - i] = static_cast<uint8_t> (stoi(hex_str.substr(2 * i, 2), 0, 16) & 0xff);
     else
         for (size_t i = 0; i < 16; i++)
             int_array[i] = static_cast<uint8_t> (stoi(hex_str.substr(2 * i, 2), 0, 16) & 0xff);
