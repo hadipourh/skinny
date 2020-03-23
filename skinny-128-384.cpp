@@ -8,6 +8,7 @@
 
 #include <stdio.h>
 #include <stdint.h>
+#include <string>
 #include <iostream>
 
 using namespace std;
@@ -51,11 +52,11 @@ void print_state(uint8_t state[16])
 void convert_hexstr_to_statearray(string hex_str, uint8_t int_array[16], bool reversed = false)
 {
     if (reversed == true)
-        for (int i = 15; i > -1; i--)
-            int_array[15 - i] = static_cast<uint8_t> (stoi(hex_str.substr(2 * i, 1) + hex_str.substr(2 * i + 1, 1), 0, 16));
+        for (size_t i = 0; i < 16; i++)
+            int_array[15 - i] = static_cast<uint8_t> (stoi(hex_str.substr(2 * i, 1) + hex_str.substr(2 * i + 1, 1), 0, 16) & 0xff);
     else
-        for (int i = 0; i < 16; i++)
-            int_array[i] = static_cast<uint8_t> (stoi(hex_str.substr(2 * i, 2), 0, 16));
+        for (size_t i = 0; i < 16; i++)
+            int_array[i] = static_cast<uint8_t> (stoi(hex_str.substr(2 * i, 2), 0, 16) & 0xff);
 }
 
 uint8_t tweak_tk2_lfsr8(uint8_t x)
